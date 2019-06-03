@@ -7,9 +7,8 @@ class App extends Component{
   state = {
     numberOne:'',
     numberTwo: '',
-    operator:'',
-    
-    values:'',
+    operator:'',    
+    result:'',
 
   }
 
@@ -33,19 +32,49 @@ class App extends Component{
 }//get calculation value on click
 
   handleSubmit = (event) => {
-    console.log('submit was hit', this.state); 
+    console.log('submit was hit, this.state:', this.state); 
     event.preventDefault();
+  if( this.state.operator ==='+'){
+   this.setState({
+     result: Number(this.state.numberOne) + Number(this.state.numberTwo)
+   }) 
+    console.log('resultAdd', this.state.result)  
+    
+  } else if (this.state.operator === '-') {
+    this.setState({
+      result: Number(this.state.numberOne) - Number(this.state.numberTwo)
+    }) 
+    console.log('resultSub', this.state.result )
+   
+  } else if (this.state.operator === '*') {
+    this.setState({
+      result: Number(this.state.numberOne) * Number(this.state.numberTwo)
+    }) 
+    console.log('resultMul', this.state.result)
+    
+  } else if (this.state.operator === '/') {
+    this.setState({
+      result: Number(this.state.numberOne) / Number(this.state.numberTwo)
+    }) 
+    console.log('resultDiv', this.state.result )
+   
+    } console.log('resultTotal', this.state.result)
+
    this.props.dispatch({ type:'SET_CALCULATION', payload: this.state});
+  
+  
    this.setState ({
      numberOne: '',
      numberTwo: '',
      operator:'',
-   })
+    //  result: this.state.result
    
+   })
+    console.log('this.state after calc:', this.state);
   }
 
   render(){
-    console.log('{this.props.rootReducer}:', this.props );
+    console.log('{this.props}:', this.props );
     console.log('this.STATE', this.state);
 
     return (
@@ -87,7 +116,9 @@ class App extends Component{
             <input type="submit" value="="/> 
            </form>
               <div>
-                {this.props.rootReducer}
+                <ul>
+                  {this.state.numberOne}{this.state.operator}{this.state.numberTwo}={this.state.result}
+                </ul>
               </div>
           </div>
         );

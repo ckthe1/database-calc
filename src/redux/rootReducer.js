@@ -1,7 +1,11 @@
+
+
+
+
 const rootReducer = (state = [], action) => {
-    console.log('rootReducer:', action);
+    console.log('rootReducer action:', action);
     if (action.type === 'SET_CALCULATION') {
-        console.log('state:', state);
+        console.log('rootReducer state:', state);
 
         return action.payload;
     }
