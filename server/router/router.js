@@ -12,7 +12,6 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-    console.log(req.body.feeling)
     console.log(req.body)
     pool.query('INSERT INTO "calculator" ("numberOne", "numberTwo", "operator", "result") VALUES ($1, $2, $3, $4);',
      [req.body.numberOne, req.body.numberTwo, req.body.operator, req.body.result])

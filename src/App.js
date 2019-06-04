@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import './App.css';
 
 class App extends Component{
@@ -9,6 +10,7 @@ class App extends Component{
     numberTwo: '',
     operator:'',    
     result:'',
+    equalSign:'',
 
   }
 
@@ -34,36 +36,42 @@ class App extends Component{
   handleSubmit = (event) => {
     console.log('submit was hit, this.state:', this.state); 
     event.preventDefault();
-  if( this.state.operator ==='+'){
-   this.setState({
-     result: Number(this.state.numberOne) + Number(this.state.numberTwo)
-   }) 
-    console.log('resultAdd', this.state.result)  
-    
-  } else if (this.state.operator === '-') {
-    this.setState({
-      result: Number(this.state.numberOne) - Number(this.state.numberTwo)
-    }) 
-    console.log('resultSub', this.state.result )
-   
-  } else if (this.state.operator === '*') {
-    this.setState({
-      result: Number(this.state.numberOne) * Number(this.state.numberTwo)
-    }) 
-    console.log('resultMul', this.state.result)
-    
-  } else if (this.state.operator === '/') {
-    this.setState({
-      result: Number(this.state.numberOne) / Number(this.state.numberTwo)
-    }) 
-    console.log('resultDiv', this.state.result )
-   
-    } console.log('resultTotal', this.state.result)
+    // this.setState({
+    //   ...this.state,
+    //   [property]: event.target.value,
+    // });
 
-   this.props.dispatch({ type:'SET_CALCULATION', payload: this.state});
+  // if( this.state.operator ==='+'){
+  //  this.setState({
+  //    result: Number(this.state.numberOne) + Number(this.state.numberTwo)
+  //  }) 
+  //   console.log('resultAdd', this.state.result)  
+    
+  // } else if (this.state.operator === '-') {
+  //   this.setState({
+  //     result: Number(this.state.numberOne) - Number(this.state.numberTwo)
+  //   }) 
+  //   console.log('resultSub', this.state.result )
+   
+  // } else if (this.state.operator === '*') {
+  //   this.setState({
+  //     result: Number(this.state.numberOne) * Number(this.state.numberTwo)
+  //   }) 
+  //   console.log('resultMul', this.state.result)
+    
+  // } else if (this.state.operator === '/') {
+  //   this.setState({
+  //     result: Number(this.state.numberOne) / Number(this.state.numberTwo)
+  //   }) 
+    console.log('resultDiv', this.state )
+   
+    // } console.log('resultTotal', this.state.result)
+
+   this.props.dispatch({ type:'ADD_CALCULATION', payload: this.state});
   
   
    this.setState ({
+     
      numberOne: '',
      numberTwo: '',
      operator:'',
@@ -79,11 +87,11 @@ componentDidMount() {
   this.fetchCalculation();
 }
 fetchCalculation = () => {
-  console.log('going to get calc infos');
+  console.log('going to FETCH calc infos');
   this.props.dispatch({ type: 'FETCH_CALCULATION' });
 }// fetch calculation infos from DB
 
-  render(){
+render(){
     console.log('{this.props}:', this.props );
     console.log('this.STATE', this.state);
 
@@ -98,10 +106,10 @@ fetchCalculation = () => {
               <input type="number" value={this.state.numberOne} onChange={this.handleChange('numberOne')} placeholder=' First Number'/>
             </div>
             <div>
-            <button value="+" onClick={this.handleClick('operator')}>+</button>
-            <button value="-" onClick={this.handleClick('operator')}>-</button>
-            < button value = "*" onClick = { this.handleClick('operator')}>*</button>
-            <button value="/" onClick={this.handleClick('operator')}>/</button>
+            <button value = "+" onClick = {this.handleClick('operator')}>+</button>
+            <button value = "-" onClick = {this.handleClick('operator')}>-</button>
+            <button value = "*" onClick = { this.handleClick('operator')}>*</button>
+            <button value = "/" onClick = {this.handleClick('operator')}>/</button>
            
               {/* <button value="7" onClick={this.handleClick}>7</button>
               <button value="8" onClick={this.handleClick}>8</button>
@@ -140,5 +148,10 @@ fetchCalculation = () => {
   // export default (App);
 const mapReduxStateToProps = (reduxState) => {
   return reduxState;
-}
+};
+
+App.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
 export default connect(mapReduxStateToProps)(App);

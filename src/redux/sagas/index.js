@@ -1,6 +1,6 @@
 import { all } from 'redux-saga/effects';
 
-import calulationSaga from './calulationSaga';
+import calculationSaga from './calculationSaga';
 
 
 // rootSaga is the primary saga.
@@ -9,6 +9,6 @@ import calulationSaga from './calulationSaga';
 
 export default function* rootSaga() {
     yield all([
-        calulationSaga(),
+        calculationSaga(),
     ]);
 }
