@@ -6,7 +6,7 @@ router.get('/', (req, res) => {
     pool.query('SELECT * FROM "calculator";').then((result) => {
         res.send(result.rows);
     }).catch((error) => {
-        console.log('Error GET /api/sezzle_calc', error);
+        console.log('Error GET /api/calculation', error);
         res.sendStatus(500);
     });
 })
@@ -14,7 +14,8 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     console.log(req.body.feeling)
     console.log(req.body)
-    pool.query('INSERT INTO "calculator" ("numberOne", "numberTwo", "operator", "result") VALUES ($1, $2, $3, $4);', [req.body.feeling, req.body.understanding, req.body.support, req.body.comment])
+    pool.query('INSERT INTO "calculator" ("numberOne", "numberTwo", "operator", "result") VALUES ($1, $2, $3, $4);',
+     [req.body.numberOne, req.body.numberTwo, req.body.operator, req.body.result])
         .then(() => {
             res.sendStatus(201)
         }).catch((error => {

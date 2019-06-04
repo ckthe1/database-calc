@@ -70,8 +70,18 @@ class App extends Component{
     //  result: this.state.result
    
    })
+    this.fetchCalculation();
     console.log('this.state after calc:', this.state);
   }
+ // end handleSubmit, add student to DB onSubmit. 
+
+componentDidMount() {
+  this.fetchCalculation();
+}
+fetchCalculation = () => {
+  console.log('going to get calc infos');
+  this.props.dispatch({ type: 'FETCH_CALCULATION' });
+}// fetch calculation infos from DB
 
   render(){
     console.log('{this.props}:', this.props );
