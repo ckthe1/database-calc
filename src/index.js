@@ -14,7 +14,6 @@ import rootSaga from './redux/sagas/calculationSaga';
 const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(
- 
     rootReducer,
     applyMiddleware(sagaMiddleware, logger),
 );

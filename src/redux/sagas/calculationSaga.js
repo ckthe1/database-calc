@@ -4,10 +4,10 @@ import axios from 'axios';
 function* postCalculation(action) {
     console.log('postCalc:action.payload:', action.payload);
     try {
-        yield axios.post('/calculation', action.payload);
+        yield axios.post('/calculation/', action.payload);
         yield dispatch({ type: 'FETCH_CALCULATION' });
     } catch (error) {
-        console.log('this was an error with the post-CALCULATION ');
+        console.log('saga error with the postCALCULATION ');
     }
 }
 
@@ -19,7 +19,7 @@ function* fetchCalculation() {
         console.log('FETCH CALC SAGAS', response.data);
 
     } catch (error) {
-        console.log('saga Error with your fetchCalculation info');
+        console.log('saga error with your fetchCalculation ');
     }
 }
 
