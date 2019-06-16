@@ -1,21 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import './App.css';
 
-class App extends Component{
+class App extends Component {
 
   state = {
-    numberOne:'',
+    numberOne: '',
     numberTwo: '',
-    operator:'',    
-    result:'',
-    equalSign:'',
-
+    operator: '',
+    result: 0,
+    equalSign: '',
+  }
+  
+  componentDidMount() {
+    this.props.dispatch({ type: 'FETCH_CALCULATION' });
   }
 
   handleChange = (property) => (event) => {
-    console.log(event.target.value)
     event.preventDefault();
     this.setState({
       ...this.state,
@@ -23,95 +25,72 @@ class App extends Component{
     });
   };// get first and second number value onChange
 
-  handleClick = (property) => (event) =>{
+  handleClick = (property) => (event) => {
     event.preventDefault();
-    console.log(event.target.value)
     this.setState({
       ...this.state,
       [property]: event.target.value,
     });
-
-}//get calculation value on click
+  }//get calculation value on click
 
   handleSubmit = (event) => {
-    console.log('submit was hit, this.state:', this.state); 
-    event.preventDefault();
-    // this.setState({
-    //   ...this.state,
-    //   [property]: event.target.value,
-    // });
+  event.preventDefault();
+  if (this.state.operator === '+') {
+      this.setState({
+        result: Number(this.state.numberOne) + Number(this.state.numberTwo)
+      })
+      console.log('resultAdd', this.state.result)
 
-  // if( this.state.operator ==='+'){
-  //  this.setState({
-  //    result: Number(this.state.numberOne) + Number(this.state.numberTwo)
-  //  }) 
-  //   console.log('resultAdd', this.state.result)  
-    
-  // } else if (this.state.operator === '-') {
-  //   this.setState({
-  //     result: Number(this.state.numberOne) - Number(this.state.numberTwo)
-  //   }) 
-  //   console.log('resultSub', this.state.result )
-   
-  // } else if (this.state.operator === '*') {
-  //   this.setState({
-  //     result: Number(this.state.numberOne) * Number(this.state.numberTwo)
-  //   }) 
-  //   console.log('resultMul', this.state.result)
-    
-  // } else if (this.state.operator === '/') {
-  //   this.setState({
-  //     result: Number(this.state.numberOne) / Number(this.state.numberTwo)
-  //   }) 
-    console.log('resultDiv', this.state )
-   
-    // } console.log('resultTotal', this.state.result)
+    } else if (this.state.operator === '-') {
+      this.setState({
+        result: Number(this.state.numberOne) - Number(this.state.numberTwo)
+      })
+      console.log('resultSub', this.state.result)
 
-   this.props.dispatch({ type:'ADD_CALCULATION', payload: this.state});
-  
-  
-   this.setState ({
-     
-     numberOne: '',
-     numberTwo: '',
-     operator:'',
-    //  result: this.state.result
-   
-   })
-    this.fetchCalculation();
-    console.log('this.state after calc:', this.state);
+    } else if (this.state.operator === '*') {
+      this.setState({
+        result: Number(this.state.numberOne) * Number(this.state.numberTwo)
+      })
+      console.log('resultMul', this.state.result)
+
+    } else if (this.state.operator === '/') {
+      this.setState({
+        result: Number(this.state.numberOne) / Number(this.state.numberTwo)
+      })
+      console.log('resultDiv', this.state)
+
+    } console.log('resultTotal', this.state.result)
+
+    this.props.dispatch({ type: 'ADD_CALCULATION', payload: this.state });
+    this.setState({
+
+      numberOne: '',
+      numberTwo: '',
+      operator: '',
+       result: '',
+
+    })
+
   }
- // end handleSubmit, add student to DB onSubmit. 
 
-componentDidMount() {
-  this.fetchCalculation();
-}
-fetchCalculation = () => {
-  console.log('going to FETCH calc infos');
-  this.props.dispatch({ type: 'FETCH_CALCULATION' });
-}// fetch calculation infos from DB
+  render() {
 
-render(){
-    console.log('{this.props}:', this.props );
-    console.log('this.STATE', this.state);
-
+    console.log('this is the reducer', this.props.calcReducer);
     return (
-      
-     
-        <div className="parent">
-         
-            <h1> Simple Calculator</h1>
-          <form onSubmit={this.handleSubmit}>    
-            <div>
-              <input type="number" value={this.state.numberOne} onChange={this.handleChange('numberOne')} placeholder=' First Number'/>
-            </div>
-            <div>
-            <button value = "+" onClick = {this.handleClick('operator')}>+</button>
-            <button value = "-" onClick = {this.handleClick('operator')}>-</button>
-            <button value = "*" onClick = { this.handleClick('operator')}>*</button>
-            <button value = "/" onClick = {this.handleClick('operator')}>/</button>
-           
-              {/* <button value="7" onClick={this.handleClick}>7</button>
+      <div className="parent">
+
+        <h1> Simple Calculator</h1>
+        <form onSubmit={this.handleSubmit}>
+          <div>
+            <input type="number" value={this.state.numberOne} onChange={this.handleChange('numberOne')} placeholder=' First Number' />
+          </div>
+          <div>
+            <button value="+" onClick={this.handleClick('operator')}>+</button>
+            <button value="-" onClick={this.handleClick('operator')}>-</button>
+            <button value="*" onClick={this.handleClick('operator')}>*</button>
+            <button value="/" onClick={this.handleClick('operator')}>/</button>
+
+            {/* <button value="7" onClick={this.handleClick}>7</button>
               <button value="8" onClick={this.handleClick}>8</button>
               <button value="9" onClick={this.handleClick}>9</button>
               <button value="+" onClick={this.handleClick}>+</button><br/>
@@ -127,31 +106,39 @@ render(){
               <button value="." onClick={this.handleClick}>.</button> 
               <button value="=" onClick={this.handleClick}>=</button>         
               <button value="/" onClick={this.handleClick}>/</button> */}
-            </div>
-            <div>          
-              <input type="number" value={this.state.numberTwo} onChange={this.handleChange('numberTwo')} placeholder=' Second Number' />
-            </div>
-            <input type="submit" value="="/> 
-           </form>
-              <div>
-                <ul>
-                  {this.state.numberOne}{this.state.operator}{this.state.numberTwo}={this.state.result}
-                </ul>
-              </div>
           </div>
-        );
-              
-      }
-  }
- 
+          <div>
+            <input type="number" value={this.state.numberTwo} onChange={this.handleChange('numberTwo')} placeholder=' Second Number' />
+          </div>
+          <input type="submit" value="=" />
+        </form>
+        <div>
+          <ul>
+            {this.props.calcReducer.map((calc)=>(
+                    <ul key = {calc.id}>
+                      <li>{calc.numberOne}{calc.operator}{calc.numberTwo}={calc.result}</li>
+                      
 
-  // export default (App);
-const mapReduxStateToProps = (reduxState) => {
+                      </ul>
+                  )
+                  )} 
+            {/* {this.state.numberOne}{this.state.operator}{this.state.numberTwo}={this.state.result} */}
+          </ul>
+        </div>
+      </div>
+    );
+
+  }
+}
+
+
+// export default (App);
+const mapReduxStateToProps = reduxState => {
   return reduxState;
 };
 
-App.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
+// App.propTypes = {
+//   classes: PropTypes.object.isRequired,
+// };
 
 export default connect(mapReduxStateToProps)(App);

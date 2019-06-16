@@ -9,8 +9,30 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('build'));
 
 /** ---------- EXPRESS ROUTES ---------- **/
-const resultsRouter = require('./router/router.js');
-app.use('/review', resultsRouter);
+const resultsRouter = require('./router/router');
+app.use('/calculator', resultsRouter);
+
+// app.post('/calculator', (req, res) => {
+//     console.log(req.body);
+//     rockThatBody = req.body;
+//     calculator.push(req.body);
+//     answer(req.body);
+//     res.sendStatus(201);
+
+// });
+// calculation is done below
+function answer() {
+    if (rockThatBody.operatorSign == '+') {
+        rockThatBody.answer = Number(rockThatBody.firstNumbers) + Number(rockThatBody.secondNumbers);
+    } else if (rockThatBody.operatorSign == '-') {
+        rockThatBody.answer = Number(rockThatBody.firstNumbers) - Number(rockThatBody.secondNumbers);
+    } else if (rockThatBody.operatorSign == '*') {
+        rockThatBody.answer = Number(rockThatBody.firstNumbers) * Number(rockThatBody.secondNumbers);
+    } else if (rockThatBody.operatorSign == '/') {
+        rockThatBody.answer = Number(rockThatBody.firstNumbers) / Number(rockThatBody.secondNumbers);
+    }
+}
+
 
 /** ---------- START SERVER ---------- **/
 app.listen(PORT, () => {
