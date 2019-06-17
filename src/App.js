@@ -9,7 +9,7 @@ class App extends Component {
     numberOne: '',
     numberTwo: '',
     operator: '',
-    result: 0,
+    result: '',
     equalSign: '',
   }
   
@@ -116,7 +116,7 @@ class App extends Component {
           <ul>
             {this.props.calcReducer.map((calc)=>(
                     <ul key = {calc.id}>
-                      <li>{calc.numberOne}{calc.operator}{calc.numberTwo}={calc.result}</li>
+                      <li>{calc.numberOne} {calc.operator} {calc.numberTwo} = {calc.result}</li>
                       
 
                       </ul>
