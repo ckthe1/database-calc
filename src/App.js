@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 // import PropTypes from 'prop-types';
 import './App.css';
 
+
+let total = '';
 class App extends Component {
 
   state = {
@@ -35,42 +37,54 @@ class App extends Component {
 
   handleSubmit = (event) => {
   event.preventDefault();
+ 
   if (this.state.operator === '+') {
+    total = (parseInt(this.state.numberOne) + parseInt(this.state.numberTwo)).toString()
+    console.log('total', total);  
+    
       this.setState({
-        result: Number(this.state.numberOne) + Number(this.state.numberTwo)
+        result: total
       })
-      console.log('resultAdd', this.state.result)
+                             
+      console.log('this.resultAdd', this.state.result)
 
     } else if (this.state.operator === '-') {
       this.setState({
-        result: Number(this.state.numberOne) - Number(this.state.numberTwo)
+        result: parseInt(this.state.numberOne) - parseInt(this.state.numberTwo)
       })
       console.log('resultSub', this.state.result)
 
     } else if (this.state.operator === '*') {
       this.setState({
-        result: Number(this.state.numberOne) * Number(this.state.numberTwo)
+        result: parseInt(this.state.numberOne) * parseInt(this.state.numberTwo)
       })
       console.log('resultMul', this.state.result)
 
     } else if (this.state.operator === '/') {
       this.setState({
-        result: Number(this.state.numberOne) / Number(this.state.numberTwo)
+        result: parseInt(this.state.numberOne) / parseInt(this.state.numberTwo)
       })
-      console.log('resultDiv', this.state)
+      console.log('resultDiv', this.state.result)
 
     } console.log('resultTotal', this.state.result)
 
+    // let newResult = this.state.result;
+
+    // this.setState({
+    //   result:newResult
+    // })
+
     this.props.dispatch({ type: 'ADD_CALCULATION', payload: this.state });
-    this.setState({
 
-      numberOne: '',
-      numberTwo: '',
-      operator: '',
-       result: '',
+    // this.setState({
+    //   ...this.state,
+    //   // numberOne: '',
+    //   // numberTwo: '',
+    //   // operator: '',
+    //   result: this.state.result,
 
-    })
-
+    // })
+    
   }
 
   render() {
@@ -110,35 +124,28 @@ class App extends Component {
           <div>
             <input type="number" value={this.state.numberTwo} onChange={this.handleChange('numberTwo')} placeholder=' Second Number' />
           </div>
-          <input type="submit" value="=" />
+          <div>
+            <input type="submit" value="=" size="222"
+             className="equal"/>
+          </div>
         </form>
         <div>
           <ul>
             {this.props.calcReducer.map((calc)=>(
                     <ul key = {calc.id}>
                       <li>{calc.numberOne} {calc.operator} {calc.numberTwo} = {calc.result}</li>
-                      
-
-                      </ul>
+                    </ul>
                   )
-                  )} 
-            {/* {this.state.numberOne}{this.state.operator}{this.state.numberTwo}={this.state.result} */}
+                )} 
           </ul>
         </div>
       </div>
     );
-
   }
 }
 
-
-// export default (App);
 const mapReduxStateToProps = reduxState => {
   return reduxState;
 };
-
-// App.propTypes = {
-//   classes: PropTypes.object.isRequired,
-// };
 
 export default connect(mapReduxStateToProps)(App);

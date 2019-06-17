@@ -1,14 +1,4 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import './index.css';
-// import App from './App';
 
-// import { Provider } from 'react-redux';
-// import { createStore, applyMiddleware } from 'redux';
-// import rootReducer from './redux/reducers/calcReducer'; 
-// import logger from 'redux-logger';
-// import createSagaMiddleware from 'redux-saga';
-// import rootSaga from './redux/sagas/calculationSaga'; 
 
 import React from 'react';
 import ReactDOM from 'react-dom';

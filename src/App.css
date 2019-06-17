@@ -13,7 +13,7 @@ button {
     text-align: center;
 }
 
-.button {
+/* .button {
     background: rgb(62, 63, 52);
     border: none;
     color: white;
@@ -23,6 +23,11 @@ button {
     font-size: 16px;
     padding: 10px;
     border: 1px solid black;
+} */
+button:hover{
+background-color: rgb(100, 159, 226);
+border-color:#0bf332;
+border: 3px;
 }
 
 
@@ -39,24 +44,27 @@ input {
     padding: 7px;
     font-family: 'Orbitron', sans-serif;font-family: 'VT323', monospace;
     font-size: 22px;
-    background: rgba(244, 247, 208, 0.432);
+    background: rgb(135, 214, 228);
     border: 1px solid black;
-    text-align: right;
+    text-align: center;
+    height: 40px;
+    width: 226px;
+    min-width: 226px;
 
 }
 
 .calcInput {
     width: 70px;
-    background: lightgray;
+    background: rgb(135, 214, 228);
 }
 
-.input {
+.equal {
     border: 1px solid black;
     font-size: 24px;
-    height: 30px;
-    width: 235px;
-    background-color: rgba(227, 235, 204, 0.623);
-    text-align: right;
+    height: 35px;
+    width: 243px;
+    background-color: rgba(118, 130, 236, 0.623);
+    text-align: center;
 
 }
 
@@ -64,3 +72,10 @@ input {
     text-align: center;
     font-size: 24px;
 }
+
+.box input[type="submit"], .box input[type="number"]{
+  border:2px solid #3600f8fd;
+  border-radius:24px;
+  text-align: center;
+}
+

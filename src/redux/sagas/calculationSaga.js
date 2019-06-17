@@ -16,8 +16,6 @@ function* fetchCalculation() {
     try {
         const response = yield axios.get('/calculator');
         yield dispatch({ type: 'GET_CALCULATION', payload: response.data })
-       
-
     } catch (error) {
         console.log('saga error with your fetchCalculation ');
     }

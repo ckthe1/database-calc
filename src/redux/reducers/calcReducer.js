@@ -8,6 +8,5 @@ const calcReducer = (state = [], action) => {
         default:
             return state;
     }
-
 }
 export default calcReducer;
