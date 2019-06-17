@@ -68,24 +68,21 @@ class App extends Component {
 
     } console.log('resultTotal', this.state.result)
 
-    // let newResult = this.state.result;
-
-    // this.setState({
-    //   result:newResult
-    // })
 
     this.props.dispatch({ type: 'ADD_CALCULATION', payload: this.state });
 
-    // this.setState({
-    //   ...this.state,
-    //   // numberOne: '',
-    //   // numberTwo: '',
-    //   // operator: '',
-    //   result: this.state.result,
 
+    /// THIS BELOW CLEARS THE INPUTS WHEN COMMENTED OUT BUT CLEARS THE RESULT AS WELL. 
+
+    // this.setState({
+    //   numberOne: '',
+    //   numberTwo: '',
+    //   operator: '',
+    //   result: '',
     // })
     
-  }
+  }/// THERE'S A BUG IN THE HANDLE SUBMIT, YOU CAN VIEW THE RESULT
+  /// IF YOU CLICK THE EQUAL SIGN TWICE ONLY
 
   render() {
 
@@ -103,6 +100,8 @@ class App extends Component {
             <button value="-" onClick={this.handleClick('operator')}>-</button>
             <button value="*" onClick={this.handleClick('operator')}>*</button>
             <button value="/" onClick={this.handleClick('operator')}>/</button>
+
+            {/* Buttons below are for future design, not functional yet */}
 
             {/* <button value="7" onClick={this.handleClick}>7</button>
               <button value="8" onClick={this.handleClick}>8</button>
