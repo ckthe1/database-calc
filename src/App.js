@@ -10,6 +10,14 @@ class App extends Component {
   state = {
     numberOne: '',
     numberTwo: '',
+    numberThree: '',
+    numberFour: '',
+    numberFive: '',
+    numberSix: '',
+    numberSeven: '',
+    numberEight: '',
+    numberNine: '',
+    dot: '',
     operator: '',
     result: '',
     equalSign: '',
@@ -29,13 +37,15 @@ class App extends Component {
 
   handleClick = (property) => (event) => {
     event.preventDefault();
+    console.log('event.target.value', event.target.value);
+    
     this.setState({
       ...this.state,
       [property]: event.target.value,
     });
   }//get calculation value on click
 
-  handleSubmit = (event) => {
+  handleEvaluate = (event) => {
   event.preventDefault();
  
   if (this.state.operator === '+') {
@@ -91,43 +101,44 @@ class App extends Component {
       <div className="parent">
 
         <h1> Simple Calculator</h1>
-        <form onSubmit={this.handleSubmit}>
+        <div>
+        {/*<form onSubmit={this.handleSubmit}>
           <div>
             <input type="number" value={this.state.numberOne} onChange={this.handleChange('numberOne')} placeholder=' First Number' />
           </div>
           <div>
-            <button value="+" onClick={this.handleClick('operator')}>+</button>
+           {/* <button value="+" onClick={this.handleClick('operator')}>+</button>
             <button value="-" onClick={this.handleClick('operator')}>-</button>
             <button value="*" onClick={this.handleClick('operator')}>*</button>
-            <button value="/" onClick={this.handleClick('operator')}>/</button>
+            <button value="/" onClick={this.handleClick('operator')}>/</button>*/}
 
             {/* Buttons below are for future design, not functional yet */}
 
-            {/* <button value="7" onClick={this.handleClick}>7</button>
-              <button value="8" onClick={this.handleClick}>8</button>
-              <button value="9" onClick={this.handleClick}>9</button>
-              <button value="+" onClick={this.handleClick}>+</button><br/>
-              <button value="4" onClick={this.handleClick}>4</button>
-              <button value="5" onClick={this.handleClick}>5</button>
-              <button value="6" onClick={this.handleClick}>6</button>
-              <button value="-" onClick={this.handleClick}>-</button><br/>
-              <button value="1" onClick={this.handleClick}>1</button>
-              <button value="2" onClick={this.handleClick}>2</button>
-              <button value="3" onClick={this.handleClick}>3</button>
-              <button value="*" onClick={this.handleClick}>*</button><br />
-              <button value="0" onClick={this.handleClick}>0</button>
-              <button value="." onClick={this.handleClick}>.</button> 
-              <button value="=" onClick={this.handleClick}>=</button>         
-              <button value="/" onClick={this.handleClick}>/</button> */}
+            <button value="7" onClick={this.handleClick('numberSeven')}>7</button>
+            <button value="8" onClick={this.handleClick('numberEight')}>8</button>
+            <button value="9" onClick={this.handleClick('numberNine')}>9</button>
+            <button value="+" onClick={this.handleClick('operator')}>+</button><br/>
+            <button value="4" onClick={this.handleClick('numberFour')}>4</button>
+            <button value="5" onClick={this.handleClick('numberFive')}>5</button>
+            <button value="6" onClick={this.handleClick('numberSix')}>6</button>
+            <button value="-" onClick={this.handleClick('operator')}>-</button><br/>
+            <button value="1" onClick={this.handleClick('numberOne')}>1</button>
+            <button value="2" onClick={this.handleClick('numberTwo')}>2</button>
+            <button value="3" onClick={this.handleClick('numberThree')}>3</button>
+            <button value="*" onClick={this.handleClick('operator')}>*</button><br />
+            <button value="0" onClick={this.handleClick('numberZero')}>0</button>
+            <button value="." onClick={this.handleClick('dot')}>.</button> 
+            <button value="=" onClick={this.handleEvaluate}>=</button>         
+            <button value="/" onClick={this.handleClick('operator')}>/</button> 
           </div>
-          <div>
-            <input type="number" value={this.state.numberTwo} onChange={this.handleChange('numberTwo')} placeholder=' Second Number' />
+        {/*<div>
+             <input type="number" value={this.state.numberTwo} onChange={this.handleChange('numberTwo')} placeholder=' Second Number' />
           </div>
           <div>
             <input type="submit" value="=" size="222"
              className="equal"/>
           </div>
-        </form>
+        </form>*/}
         <div>
           <ul>
             {this.props.calcReducer.map((calc)=>(
