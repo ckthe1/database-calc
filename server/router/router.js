@@ -15,8 +15,8 @@ router.post('/', (req, res) => {
     console.log(req.body);
    
     
-    pool.query('INSERT INTO "calculator" ("numberOne", "numberTwo", "operator", "result", "equalSign") VALUES ($1, $2, $3, $4, $5);',
-     [req.body.numberOne, req.body.numberTwo, req.body.operator, req.body.result, req.body.equalSign])
+    pool.query('INSERT INTO "calculator" ("input", "result") VALUES ($1, $2);',
+     [req.body.input, req.body.result])
         .then(() => {
             res.sendStatus(201)
         }).catch((error => {
