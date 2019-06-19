@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import PropTypes from 'prop-types';
 import './App.css';
 import * as math from "mathjs";
 
 
-let total = '';
+
 class App extends Component {
 
   state = {
@@ -22,39 +21,34 @@ class App extends Component {
     // dot: '',
     // operator: '',
     result: '',
-    // equalSign: '',
+    equalSign: '',
   }
   
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_CALCULATION' });
   }
 
-
-  // handleClick = (property) => (event) => {
-  //   event.preventDefault();
-  //   console.log('event.target.value', event.target.value);
-    
-  //   this.setState({
-  //     ...this.state,
-  //     [property]: event.target.value,
-  //   });
-  // }//get calculation value on click
   handleClick = (val) => {
     this.setState({ input: this.state.input + val.target.value });
     console.log('input:',this.state.input);
     console.log('event.target.value', val.target.value);
     
   };
-  handleEvaluate = () =>{
-    this.setState({ result: math.evaluate(this.state.input) });
-    console.log('input',this.state.input);
-    
+  handleEvaluate = (event) =>{
+   
+    console.log('this.state.equalSign:',this.state.equalSign);
+    console.log('equalSign target value:',event.target.value)
+ 
+    this.setState({ 
+      result: math.evaluate(this.state.input),
+      equalSign: event.target.value
+    });
     console.log('result:', this.state.result);
     this.props.dispatch({ type: 'ADD_CALCULATION', payload: this.state });
   }
 
 handleClear = ()=> {
- this.setState({ input: '', result: '' })
+ this.setState({ input: '', result: '', equalSign:'' })
 }
 
 
@@ -65,7 +59,7 @@ handleClear = ()=> {
       <div className="parent">
 
         <h1> Simple Calculator</h1>
-        <div>{this.state.input} {this.state.result}</div>
+        <div>{this.state.input}{this.state.equalSign}{this.state.result}</div>
         <div>
     
             <button value="7" onClick={this.handleClick}>7</button>
