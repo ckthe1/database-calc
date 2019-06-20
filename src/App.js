@@ -10,17 +10,6 @@ class App extends Component {
 
   state = {
     input:'',
-    // numberOne: '',
-    // numberTwo: '',
-    // numberThree: '',
-    // numberFour: '',
-    // numberFive: '',
-    // numberSix: '',
-    // numberSeven: '',
-    // numberEight: '',
-    // numberNine: '',
-    // dot: '',
-    // operator: '',
     result: '',
     equalSign: '',
   }
@@ -60,7 +49,9 @@ handleClear = ()=> {
       <div className="parent">
 
         <h1> Simple Calculator</h1>
-        <div>{this.state.input}{this.state.equalSign}{this.state.result}</div>
+        <div>
+          {this.state.input}{this.state.equalSign}{this.state.result}
+        </div>
         <div className="calcDisplay">
     
             <button value="7" onClick={this.handleClick}>7</button>
