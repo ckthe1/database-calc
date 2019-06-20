@@ -1,76 +1,48 @@
 html {
     font-family: 'Orbitron', sans-serif;font-family: 'VT323', monospace;
-    /* background-image: url("background.jpg"); */
     background-size: cover;
 }
 
 button {
-    font-family: 'Orbitron', sans-serif;font-family: 'VT323', monospace;
+     
+    font-family: 'VT323', monospace;
     font-size: 24px;
-    background-color: rgba(196, 197, 180, 0.788);
-    border: 1px solid black;
+    color:white;
+    background-color: rgba(28, 129, 223, 0.788);
+    border: 1px solid rgb(110, 235, 38);
     padding: 15px 22px;
     text-align: center;
 }
 
-/* .button {
-    background: rgb(62, 63, 52);
-    border: none;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    padding: 10px;
-    border: 1px solid black;
-} */
+
 button:hover{
-background-color: rgb(100, 159, 226);
-border-color:#0bf332;
-border: 3px;
+background-color: rgb(146, 115, 233);
 }
 
 
 .parent {
     text-align: center;
+    
 }
-
+.calcDisplay{
+ border-radius:24px;
+}
 .child {
     display: inline-block;
     font-size: 24px;
 }
 
-input {
+.clearButton {
     padding: 7px;
     font-family: 'Orbitron', sans-serif;font-family: 'VT323', monospace;
     font-size: 22px;
-    background: rgb(135, 214, 228);
-    border: 1px solid black;
+    background: rgb(28, 129, 223, 0.788);
+    border: 1px solid #0bf332;
     text-align: center;
-    height: 40px;
-    width: 226px;
-    min-width: 226px;
-
-}
-
-.calcInput {
-    width: 70px;
-    background: rgb(135, 214, 228);
-}
-
-.equal {
-    border: 1px solid black;
-    font-size: 24px;
-    height: 35px;
-    width: 243px;
-    background-color: rgba(118, 130, 236, 0.623);
-    text-align: center;
-
-}
-
-.calcOutput {
-    text-align: center;
-    font-size: 24px;
+    padding: 0px;
+    margin-inline-start: 272px;
+    margin-inline-end: 272px;
+    margin-bottom: 50px;
 }
 
 .box input[type="submit"], .box input[type="number"]{
