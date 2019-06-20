@@ -50,7 +50,7 @@ handleClear = ()=> {
 
         <h1> Simple Calculator</h1>
         <div>
-          {this.state.input}{this.state.equalSign}{this.state.result}
+          {this.state.input} {this.state.equalSign} {this.state.result}
         </div>
         <div className="calcDisplay">
     
