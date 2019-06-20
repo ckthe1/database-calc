@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import './App.css';
 import * as math from "mathjs";
 
@@ -60,7 +61,7 @@ handleClear = ()=> {
 
         <h1> Simple Calculator</h1>
         <div>{this.state.input}{this.state.equalSign}{this.state.result}</div>
-        <div>
+        <div className="calcDisplay">
     
             <button value="7" onClick={this.handleClick}>7</button>
             <button value="8" onClick={this.handleClick}>8</button>
@@ -80,7 +81,7 @@ handleClear = ()=> {
             <button value="/" onClick={this.handleClick}>/</button> 
           </div>
           <div className="clearButton">
-            <button onClick={this.handleClear}>Clear</button>
+            <button onClick={this.handleClear}>  Clear  </button>
           </div>
     
         <div>
