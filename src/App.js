@@ -71,8 +71,8 @@ handleClear = ()=> {
             <button value="=" onClick={this.handleEvaluate}>=</button>         
             <button value="/" onClick={this.handleClick}>/</button> 
           </div>
-          <div className="clearButton">
-            <button onClick={this.handleClear}>  Clear  </button>
+          <div >
+          <button className="clearButton" onClick={this.handleClear}>  Clear  </button>
           </div>
     
         <div>
