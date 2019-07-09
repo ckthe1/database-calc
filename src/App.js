@@ -26,25 +26,37 @@ class App extends Component {
   };
   handleEvaluate = (event) =>{
    
-    console.log('this.state.equalSign:',this.state.equalSign);
-    console.log('equalSign target value:',event.target.value)
- 
     this.setState({ 
       result: math.evaluate(this.state.input),
       equalSign: event.target.value
-    });
-    console.log('result:', this.state.result);
-    this.props.dispatch({ type: 'ADD_CALCULATION', payload: this.state });
-  }
+    }, () => {
+      this.SagaPost()
+    })  
+  }// calculation is done here , then send to database
 
-handleClear = ()=> {
+
+  SagaPost = () =>{
+    this.props.dispatch({ type: 'ADD_CALCULATION', payload: this.state });
+  }//post to sagas
+
+handleClear = () => {
  this.setState({ input: '', result: '', equalSign:'' })
-}
+}// clear inputs
 
 
   render() {
 
-    console.log('this is the reducer', this.props.calcReducer);
+    let CalcList = null;
+    CalcList = this.props.calcReducer.map((data, i) => {
+      return (
+        <div>
+          <li key={i} > {data.input} = {data.result}</li>
+          <br />
+        </div>
+      )
+    })
+
+    console.log('calc.Reducer:', this.props.calcReducer);
     return (
       <div className="parent">
 
@@ -77,12 +89,14 @@ handleClear = ()=> {
     
         <div>
           <ul>
-            {this.props.calcReducer.map((calc)=>(
+
+            {CalcList}
+            {/* {this.props.calcReducer.map((calc)=>(
                     <ul key = {calc.id}>
                       <li>{calc.input} = {calc.result}</li>
                     </ul>
                   )
-                )} 
+                )}  */}
           </ul>
         </div>
       </div>
